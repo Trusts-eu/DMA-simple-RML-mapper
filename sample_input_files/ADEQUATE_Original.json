@@ -1,0 +1,164 @@
+{
+    "owner_org": "7bf6fdb2-58b3-435e-9786-cff406bff1a8", 
+    "maintainer": "Open Data Portal@WU", 
+    "relationships_as_object": [], 
+    "private": false, 
+    "maintainer_email": "contact@data.wu.ac.at", 
+    "revision_timestamp": "2016-09-15T08:58:05.758733", 
+    "id": "79be1931-9c6e-4856-9145-ecefbbda1ce6", 
+    "metadata_created": "2016-09-15T08:38:10.980462", 
+    "metadata_modified": "2017-03-03T11:37:19.335469", 
+    "author": "Open Data Portal@WU", 
+    "author_email": "contact@data.wu.ac.at", 
+    "state": "active", 
+    "version": 1.0, 
+    "license_id": "cc-by", 
+    "type": "dataset", 
+    "resources": [
+        {
+            "resource_group_id": "ca034e34-33fb-4898-82ff-9c09fbee9425", 
+            "cache_last_updated": null, 
+            "revision_timestamp": "2017-03-03T11:37:19.334687", 
+            "webstore_last_updated": null, 
+            "id": "090b8cc4-2105-46c5-a822-f6c013a50757", 
+            "size": null, 
+            "state": "active", 
+            "hash": "", 
+            "description": "A list of all Courses and their events at the Vienna University of Economics and Business in WS16", 
+            "format": "CSV", 
+            "tracking_summary": {
+                "total": 0, 
+                "recent": 0
+            }, 
+            "mimetype_inner": null, 
+            "url_type": null, 
+            "mimetype": "text/csv", 
+            "cache_url": null, 
+            "name": "All course-events WS16", 
+            "created": "2016-09-14T18:50:55.542634", 
+            "url": "http://data.wu.ac.at/portal/dataset/d99ed34b-449d-4a34-8f11-0f6743fe3cae/resource/090b8cc4-2105-46c5-a822-f6c013a50757/download/allcoursesandevents16w.csv", 
+            "characterset": "utf-8", 
+            "webstore_url": null, 
+            "last_modified": "2017-03-02T23:11:36.811934", 
+            "position": 0, 
+            "revision_id": "eb23ae42-27ef-4aec-87ce-b00fd4488dce", 
+            "resource_type": null
+        }
+    ], 
+    "num_resources": 1, 
+    "tags": [
+        {
+            "vocabulary_id": null, 
+            "display_name": "Vienna", 
+            "name": "Vienna", 
+            "revision_timestamp": "2016-09-15T08:38:10.980462", 
+            "state": "active", 
+            "id": "2213c8ef-333e-47ca-a48f-25c31dad47c1"
+        }, 
+        {
+            "vocabulary_id": null, 
+            "display_name": "WS16", 
+            "name": "WS16", 
+            "revision_timestamp": "2016-09-15T08:38:10.980462", 
+            "state": "active", 
+            "id": "1e6c24bf-1a8f-4b64-acff-e4fc622f511e"
+        }, 
+        {
+            "vocabulary_id": null, 
+            "display_name": "WU", 
+            "name": "WU", 
+            "revision_timestamp": "2016-09-15T08:38:10.980462", 
+            "state": "active", 
+            "id": "a512a13d-794e-404e-b038-6895ba7a5f15"
+        }, 
+        {
+            "vocabulary_id": null, 
+            "display_name": "courses", 
+            "name": "courses", 
+            "revision_timestamp": "2016-09-15T08:38:10.980462", 
+            "state": "active", 
+            "id": "d9c6a6d6-32af-4771-b59c-c4bdfbf9d983"
+        }, 
+        {
+            "vocabulary_id": null, 
+            "display_name": "events", 
+            "name": "events", 
+            "revision_timestamp": "2016-09-15T08:38:10.980462", 
+            "state": "active", 
+            "id": "0b0923be-77dc-4c05-a049-362fdbf13016"
+        }, 
+        {
+            "vocabulary_id": null, 
+            "display_name": "lecture", 
+            "name": "lecture", 
+            "revision_timestamp": "2016-09-15T08:38:10.980462", 
+            "state": "active", 
+            "id": "39625cfd-3124-4513-ab8a-c1c670a6113a"
+        }, 
+        {
+            "vocabulary_id": null, 
+            "display_name": "lectures", 
+            "name": "lectures", 
+            "revision_timestamp": "2016-09-15T08:38:10.980462", 
+            "state": "active", 
+            "id": "75b76087-7424-434c-8466-f973f1987814"
+        }
+    ], 
+    "title": "All Course-Events during WS16 at WU Vienna", 
+    "tracking_summary": {
+        "total": 0, 
+        "recent": 0
+    }, 
+    "groups": [], 
+    "creator_user_id": "5a03d18d-ce84-40e9-b0d2-a31d1a13d278", 
+    "relationships_as_subject": [], 
+    "num_tags": 7, 
+    "name": "all_course_events_2016w", 
+    "isopen": true, 
+    "url": null, 
+    "notes": "A list of all Courses and their events at the Vienna University of Economics and Business in WS16", 
+    "license_title": "Creative Commons Namensnennung 3.0 \u00d6sterreich", 
+    "extras": [
+        {
+            "value": "2016-10-01T00:00:00", 
+            "key": "begin_datetime"
+        }, 
+        {
+            "value": "bildung-und-forschung", 
+            "key": "categorization"
+        }, 
+        {
+            "value": "2017-02-28T00:00:00", 
+            "key": "end_datetime"
+        }, 
+        {
+            "value": "http://data.wu.ac.at/", 
+            "key": "maintainer_link"
+        }, 
+        {
+            "value": "Institute for Information Business at Vienna University of Economics and Business", 
+            "key": "publisher"
+        }, 
+        {
+            "value": "weekly", 
+            "key": "update_frequency"
+        }
+    ], 
+    "license_url": "https://creativecommons.org/licenses/by/3.0/at/deed.de", 
+    "organization": {
+        "description": "Institute for Information Business at Vienna University of Economics and Business", 
+        "title": "WU Wien Open Data ", 
+        "created": "2015-01-28T11:44:11.459706", 
+        "approval_status": "approved", 
+        "revision_timestamp": "2017-03-03T10:23:25.189087", 
+        "is_organization": true, 
+        "state": "active", 
+        "image_url": "20150203-173702.974732wu-large.jpg", 
+        "revision_id": "8fe012c7-1d24-47d1-97a5-638fd05be111", 
+        "type": "organization", 
+        "id": "7bf6fdb2-58b3-435e-9786-cff406bff1a8", 
+        "name": "wu-wien-opendata"
+    }, 
+    "revision_id": "1053d8d7-5988-40d5-9207-20adb283665d"
+}
+

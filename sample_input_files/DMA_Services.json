@@ -1,0 +1,107 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "A **RESTful service interface template specification for DMA service**. It contains **endpoints** for *healthcheck* and *OpenAPI description*. For **authentication**, *OAuth2 information* is preset.  Furthermore, **all required metadata information** is set up and **has to be adjusted** for this service. **NOTE, that this template data is *PRELIMINARY* and will be fine-tuned according to already implemented packages!**",
+		"contact": {
+			"email": "support@my-company.com"
+		},
+		"version": "1.0.0",
+		"title": "DMA service template specification",
+		"license": {
+			"name": "License name - with optional URL",
+			"url": "http://www.my-company.com/licenses/LICENSE-1.0"
+		},
+		"x-dma-metadata": {
+			"created": "DMA date will be auto-filled",
+			"publisher": "DMA publisher",
+			"qualityrating": 1,
+			"pricemodel": "DMA pricemodel",
+			"theme": ["Theme1"],
+			"servicetype": "DMA servicetype",
+			"tags": ["Tag1", "Tag2"]
+		}
+	},
+	"tags": [{
+		"description": "Mandatory endpoints for all DMA services",
+		"name": "OpenAPI specific"
+	}],
+	"securityDefinitions": {
+		"OAuth2": {
+			"flow": "accessCode",
+			"tokenUrl": "https://dma.cas.at/oauth/token",
+			"scopes": {
+				"read": "Grants read access",
+				"admin": "Grants read and write access to administrative information",
+				"TBD": "A set of useful scopes has to be defined!",
+				"write": "Grants write access"
+			},
+			"authorizationUrl": "https://dma.cas.at/oauth/authorize",
+			"type": "oauth2"
+		}
+	},
+	"externalDocs": {
+		"url": "http://docs.dma.at/additional-info.htm"
+	},
+	"definitions": {
+		"healthStatus": {
+			"required": ["status"],
+			"properties": {
+				"message": {
+					"type": "string"
+				},
+				"status": {
+					"enum": ["OK", "ERROR", "MISSING DATA", "WAITING", "FINISHED"],
+					"type": "string"
+				}
+			},
+			"type": "object"
+		}
+	},
+	"version": "1.0",
+	"created": "Fri Nov 09 2018 15:36:45 GMT+0100 (Central European Standard Time)",
+	"paths": {
+		"/healthCheck": {
+			"get": {
+				"security": [{
+					"OAuth2": ["read"]
+				}],
+				"description": "",
+				"summary": "Allows up-time calculation",
+				"operationId": "healthCheck",
+				"responses": {
+					"200": {
+						"description": "The service is up and running",
+						"schema": {
+							"$ref": "#/definitions/healthStatus"
+						}
+					}
+				},
+				"tags": ["DMA specific"]
+			}
+		},
+		"/openapi": {
+			"get": {
+				"security": [{
+					"OAuth2": ["read"]
+				}],
+				"description": "",
+				"summary": "Returns the DMA OpenAPI specification of this service for client code generation",
+				"produces": ["application/json"],
+				"operationId": "getOpenAPI",
+				"responses": {
+					"200": {
+						"description": "The OpenAPI specification which describes this server and can be used to generate client source code",
+						"schema": {
+							"type": "string"
+						}
+					}
+				},
+				"tags": ["DMA specific"]
+			}
+		}
+	},
+	"basePath": "/my-service/v1",
+	"UID": "test-service-id",
+	"schemes": ["http", "https"],
+	"host": "my-company.com"
+}

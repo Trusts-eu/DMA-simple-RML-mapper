@@ -1,0 +1,753 @@
+{
+  "open api specification": {
+    "basePath": "/api/v1.0",
+    "consumes": [
+      "application/json"
+    ],
+    "definitions": {
+      "Contactability": {
+        "properties": {
+          "contactability": {
+            "description": "Contactability\n* `0` - No information available\n* `1` - Information available\n",
+            "example": 0,
+            "type": "integer"
+          },
+          "description": {
+            "description": "Description",
+            "example": "contact information not available",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Currentness": {
+        "properties": {
+          "currentness": {
+            "description": "Currentness",
+            "example": 1.15,
+            "type": "number"
+          },
+          "processing time delta": {
+            "description": "Processing time delta (δ)",
+            "example": 1,
+            "type": "number"
+          },
+          "update frequency lambda": {
+            "description": "Update frequency lambda (λ)",
+            "example": 1.15,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "FormatCompliance": {
+        "properties": {
+          "description": {
+            "description": "Description",
+            "example": "metadata field does not match dataset format",
+            "type": "string"
+          },
+          "format compliance": {
+            "description": "Temporal cohesion\n* `0` - Format does not match metadata\n* `1` - Format matches metadata\n",
+            "example": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "HeaderCompleteness": {
+        "properties": {
+          "description": {
+            "default": "completeness score in %",
+            "description": "Description",
+            "type": "string"
+          },
+          "metadata completeness": {
+            "description": "Metadata completeness",
+            "example": 80,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "Language probability": {
+        "properties": {
+          "language": {
+            "description": "ISO 639-2 language code",
+            "example": "de",
+            "type": "string"
+          },
+          "probability": {
+            "description": "The probability of the given language, from 0 to 1",
+            "example": 0.91,
+            "type": "number"
+          }
+        }
+      },
+      "LanguageMatch": {
+        "properties": {
+          "description": {
+            "description": "Description",
+            "example": "metadata field matches language of dataset",
+            "type": "string"
+          },
+          "language match": {
+            "description": "Language match\n* `0` - Language doesn not match metadata\n* `1` - Language matches metadata\n* `-1` - Language match can not be determined\n",
+            "example": 1,
+            "type": "integer"
+          },
+          "language probability": {
+            "description": "The list of possible languages, with their respective probabilities.",
+            "example": [
+              {
+                "language": "de",
+                "probability": 0.9913242
+              },
+              {
+                "language": "en",
+                "probability": 0.4365479
+              }
+            ],
+            "items": {
+              "$ref": "#/definitions/Language probability"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "OpenAPISpec": {
+        "properties": {
+          "open api specification": {
+            "description": "Metadata completeness",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "Openness": {
+        "properties": {
+          "description": {
+            "description": "Description",
+            "example": "5-star rating due to CC-Zero license",
+            "type": "string"
+          },
+          "openness score": {
+            "description": "License | Star-based rating\n--- | ---\nCC-Zero | 5\nCC-BY | 4\nCC-BY-SA | 3\nCC-BY-NC | 2\nCC-BY-NC-ND | 1\n*licence score unavailable* | -1\n",
+            "example": 5,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "TemporalCohesion": {
+        "properties": {
+          "description": {
+            "description": "Description",
+            "example": "creation date of dataset before last datum of dataset",
+            "type": "string"
+          },
+          "temporal cohesion": {
+            "description": "Temporal cohesion\n* `0` - Logical consistency not given\n* `1` - Logical consistency given\n",
+            "example": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "Understandability": {
+        "properties": {
+          "flesch english": {
+            "description": "Flesch reading-ease score (applicable for English):\n\nScore | School level | Notes\n--- | --- | ---\n100-90 | 5th grade | Very easy to read. Easily understood by an average 11-year-old student.\n90-80 | 6th grade | Easy to read. Conversational English for consumers.\n80-70 | 7th grade | Fairly easy to read.\n70-60 | 8th & 9th grade | Plain English. Easily understood by 13- to 15-year-old students.\n60-50 | 10th to 12th grade | Fairly difficult to read.\n50-30 | College | Difficult to read.\n30-0 | College graduate | Very difficult to read. Best understood by university graduates.\n",
+            "example": 26,
+            "type": "number"
+          },
+          "flesch german": {
+            "description": "Flesch reading-ease score (applicable for German):\n\nScore | School level | Notes\n--- | --- | ---\n100-90 | 5th grade | Very easy to read. Easily understood by an average 11-year-old student.\n90-80 | 6th grade | Easy to read. Conversational English for consumers.\n80-70 | 7th grade | Fairly easy to read.\n70-60 | 8th & 9th grade | Plain English. Easily understood by 13- to 15-year-old students.\n60-50 | 10th to 12th grade | Fairly difficult to read.\n50-30 | College | Difficult to read.\n30-0 | College graduate | Very difficult to read. Best understood by university graduates.\n",
+            "example": 26,
+            "type": "number"
+          },
+          "lex score english": {
+            "description": "LEX score (applicable for English):\n\nScore | Assessment\n--- | ---\n0-24 | Very easy\n25-34 | Easy\n35-44 | Standard\n45-54 | Difficult\n55+ | Very difficult\n",
+            "example": 26,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "inline_response_400": {
+        "properties": {
+          "error": {
+            "default": "Process ID does not exist / is missing.",
+            "type": "string"
+          }
+        }
+      },
+      "inline_response_401": {
+        "properties": {
+          "error": {
+            "default": "Unauthorized. Auth key is missing.",
+            "type": "string"
+          }
+        }
+      },
+      "inline_response_404": {
+        "properties": {
+          "error": {
+            "default": "No asset with the given PID (pid) found.",
+            "type": "string"
+          }
+        }
+      },
+      "inline_response_500": {
+        "properties": {
+          "error": {
+            "default": "An error occurred during registration.",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "info": {
+      "description": "The purpose of the following REST API service specification is to provide the basic definitions for an implementation using the OpenAPI Specification, formerly known as the Swagger API framework. It provides a standard, language-agnostic interface to define REST APIs. Code can be generated for a variety of programming languages.\n",
+      "license": {
+        "name": "TODO",
+        "url": "http://todo.todo"
+      },
+      "title": "DMA Data Quality services",
+      "version": "1.0.0",
+      "x-dma-metadata:category": [
+        "#DataQuality"
+      ],
+      "x-dma-metadata:contactpoint": {
+        "email": "loerinc.thurnay@donau-uni.ac.at",
+        "name": "Lőrinc Thurnay",
+        "url": "https://www.donau-uni.ac.at/en/department/gpa/index.php"
+      },
+      "x-dma-metadata:publisher": {
+        "URL": "https://www.donau-uni.ac.at/en/department/gpa/index.php",
+        "name": "Danube University Krems"
+      },
+      "x-dma-metadata:tags": [
+        "#Metadata",
+        "#DataQuality"
+      ],
+      "x-dma-metadata:theme": [
+        "#Metadata"
+      ]
+    },
+    "parameters": {
+      "processID": {
+        "description": "The `process_id` Process ID of the dataset submission process.",
+        "in": "path",
+        "minimum": 1,
+        "name": "process_id",
+        "required": true,
+        "type": "string"
+      }
+    },
+    "paths": {
+      "/quality/OpenAPISpec": {
+        "post": {
+          "description": "This endpoint returns the Open API Specification of all the related API endpoints in JSON format.\n",
+          "operationId": "openapispec",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/OpenAPISpec"
+              }
+            }
+          },
+          "summary": "Open API Specification of this API",
+          "tags": [
+            "meta"
+          ],
+          "x-swagger-router-controller": "swagger_server.controllers.meta_controller"
+        }
+      },
+      "/quality/dq1/{process_id}": {
+        "post": {
+          "description": "Via the unique external identifier, a submitted dataset is assessed regarding its completeness of all\nexisting metadata fields.\n\nThis metric measures the completeness of all mandatory metadata fields of a given dataset. The completeness is\nstated in %, based on the total amount of the existing mandatory metadata fields:\n\n```Header Completeness = # of filled metadata fields / # of total metadata fields * 100```\n",
+          "operationId": "dq1",
+          "parameters": [
+            {
+              "description": "The `process_id` Process ID of the dataset submission process.",
+              "in": "path",
+              "minimum": 1,
+              "name": "process_id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/HeaderCompleteness"
+              }
+            },
+            "400": {
+              "description": "Process ID does not exist / is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_400"
+              }
+            },
+            "401": {
+              "description": "Unauthorized. Auth key is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_401"
+              }
+            },
+            "404": {
+              "description": "No asset with the given PID (pid) found.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_404"
+              }
+            },
+            "500": {
+              "description": "An error occurred during registration.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_500"
+              }
+            }
+          },
+          "summary": "Header Completeness",
+          "tags": [
+            "quality"
+          ],
+          "x-swagger-router-controller": "swagger_server.controllers.quality_controller"
+        }
+      },
+      "/quality/dq2/{process_id}": {
+        "post": {
+          "description": "Via the unique external identifier, a submitted dataset is assessed regarding its complexity based\non the provided description field in its metadata.\n\n### LIX (English)\n\nThis metric measures the complexity of a given dataset description in terms of readability and therefore its\nunderstandability. As actual measurement, the Laesbarhedsindex (LIX) [1] is suggest, as it is particularly\nsuitable for English:\n\n```LIX = (words + sentences) + 100 * (words > 6 characters) / words```\n\n### Flesch reading ease\n\nIn the Flesch reading-ease test, higher scores indicate material that is easier to read; lower numbers mark\npassages that are more difficult to read. The formula for the Flesch reading-ease score (FRES) [2] test is:\n\n```FRES = 206.835 - 1.015 * (total words) / (total sentences) - 84.6 * (total syllables) / (total words) ```\n\n#### German\n\nThe formula has been transferred to German language as the following [3]:\n\n```FRES = 180 - (total words) / (total sentences) - 58.5 * (total syllables) / (total words) ```\n\n---\n\n*[1] Reck, R. P., & Reck, R. A. (2007). Generating and rendering readability scores for Project Gutenberg texts. In\nProceedings of the Corpus Linguistics Conference. pp. 1-18*\n\n*[2] Flesch, R. (1948). A new readability yardstick. Journal of Applied Psychology, 32(3)*\n\n*[3] Amstad, T. (1978). Wie verständlich sind unsere Zeitungen?. Studenten-Schreib-Service*\n",
+          "operationId": "dq2",
+          "parameters": [
+            {
+              "description": "The `process_id` Process ID of the dataset submission process.",
+              "in": "path",
+              "minimum": 1,
+              "name": "process_id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Understandability"
+              }
+            },
+            "400": {
+              "description": "Process ID does not exist / is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_400"
+              }
+            },
+            "401": {
+              "description": "Unauthorized. Auth key is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_401"
+              }
+            },
+            "404": {
+              "description": "No asset with the given PID (pid) found.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_404"
+              }
+            },
+            "500": {
+              "description": "An error occurred during registration.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_500"
+              }
+            }
+          },
+          "summary": "Understandability",
+          "tags": [
+            "quality"
+          ],
+          "x-swagger-router-controller": "swagger_server.controllers.quality_controller"
+        }
+      },
+      "/quality/dq3/{process_id}": {
+        "post": {
+          "description": "Via the unique external identifier, a submitted dataset is assessed regarding its completeness in\nterms of provided contact information.\n\nThis metric assesses the availability of contact information regarding the person responsible for the given\ndataset:\n\n```Contactability = {0, no information available | 1, information available}```\n",
+          "operationId": "dq3",
+          "parameters": [
+            {
+              "description": "The `process_id` Process ID of the dataset submission process.",
+              "in": "path",
+              "minimum": 1,
+              "name": "process_id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Contactability"
+              }
+            },
+            "400": {
+              "description": "Process ID does not exist / is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_400"
+              }
+            },
+            "401": {
+              "description": "Unauthorized. Auth key is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_401"
+              }
+            },
+            "404": {
+              "description": "No asset with the given PID (pid) found.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_404"
+              }
+            },
+            "500": {
+              "description": "An error occurred during registration.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_500"
+              }
+            }
+          },
+          "summary": "Contactability",
+          "tags": [
+            "quality"
+          ],
+          "x-swagger-router-controller": "swagger_server.controllers.quality_controller"
+        }
+      },
+      "/quality/dq4/{process_id}": {
+        "post": {
+          "description": "Via the unique external identifier, a submitted dataset is assessed regarding its logical soundness\nin terms of the relationship between its creation data and the time period the datasets covers.\n\nThis metric evaluates for the description of the temporal coverage of\nthe dataset (i.e., which time frame the data within the dataset cover) and the actual release date of\nthe dataset being logical consistent (i.e., the dataset cannot be released earlier than the latest\ndatum within the dataset).\n\n```Temporal cohesion = {0, logical consistency not given  | 1, logical consistency given}```\n",
+          "operationId": "dq4",
+          "parameters": [
+            {
+              "description": "The `process_id` Process ID of the dataset submission process.",
+              "in": "path",
+              "minimum": 1,
+              "name": "process_id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/TemporalCohesion"
+              }
+            },
+            "400": {
+              "description": "Process ID does not exist / is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_400"
+              }
+            },
+            "401": {
+              "description": "Unauthorized. Auth key is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_401"
+              }
+            },
+            "404": {
+              "description": "No asset with the given PID (pid) found.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_404"
+              }
+            },
+            "500": {
+              "description": "An error occurred during registration.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_500"
+              }
+            }
+          },
+          "summary": "Temporal cohesion",
+          "tags": [
+            "quality"
+          ],
+          "x-swagger-router-controller": "swagger_server.controllers.quality_controller"
+        }
+      },
+      "/quality/dq5/{process_id}": {
+        "post": {
+          "description": "Via the unique external identifier, a submitted dataset is assessed regarding its openness of the\nattached license.\n\nThis metric assesses the openness of a given dataset according to the attached\nlicense. As a quantitative representation of openness is challenging, a star-based rating system is\nproposed, which is reduced according to the level of restriction applied to the use of the dataset by\nthe license\n",
+          "operationId": "dq5",
+          "parameters": [
+            {
+              "description": "The `process_id` Process ID of the dataset submission process.",
+              "in": "path",
+              "minimum": 1,
+              "name": "process_id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Openness"
+              }
+            },
+            "400": {
+              "description": "Process ID does not exist / is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_400"
+              }
+            },
+            "401": {
+              "description": "Unauthorized. Auth key is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_401"
+              }
+            },
+            "404": {
+              "description": "No asset with the given PID (pid) found.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_404"
+              }
+            },
+            "500": {
+              "description": "An error occurred during registration.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_500"
+              }
+            }
+          },
+          "summary": "Openness",
+          "tags": [
+            "quality"
+          ],
+          "x-swagger-router-controller": "swagger_server.controllers.quality_controller"
+        }
+      },
+      "/quality/dq6/{process_id}": {
+        "post": {
+          "description": "Via the unique external identifier, a submitted dataset is assessed regarding the language stated in\nits metadata and the actual language within the dataset.\n\nThis metric compares the language which is stated in the metadata of a given dataset with the actual language\nbeing present within the dataset.\n\n```Language match = {0, language doesn not match metadata  | 1, language matches metadata}```\n\nLanguage probability calculation is based on https://pypi.python.org/pypi/langdetect? .\nLanguage probability calculation only happens on columns that on average contain text longer than 20 characters\n(under that language detection does not work reliably) and that are likely to contain natural language text\n(at least 90% of the string consist of letters and spaces).\n",
+          "operationId": "dq6",
+          "parameters": [
+            {
+              "description": "The `process_id` Process ID of the dataset submission process.",
+              "in": "path",
+              "minimum": 1,
+              "name": "process_id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/LanguageMatch"
+              }
+            },
+            "400": {
+              "description": "Process ID does not exist / is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_400"
+              }
+            },
+            "401": {
+              "description": "Unauthorized. Auth key is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_401"
+              }
+            },
+            "404": {
+              "description": "No asset with the given PID (pid) found.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_404"
+              }
+            },
+            "500": {
+              "description": "An error occurred during registration.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_500"
+              }
+            }
+          },
+          "summary": "Language match",
+          "tags": [
+            "quality"
+          ],
+          "x-swagger-router-controller": "swagger_server.controllers.quality_controller"
+        }
+      },
+      "/quality/dq7/{process_id}": {
+        "post": {
+          "description": "Via the unique external identifier, a submitted dataset is assessed regarding its currentness (freshness) based on\nthe relation of the current data, its release data, as well as the planned update cycle.\n\nThis metric describes the currentness of a given dataset decreasing over time.\nAlong the definition of Atz (2014), the currentness can be formulated for a given dataset as follows:\n\n```currentness τ = (update frequency λ + δ) / (today - last update)```\n\nWhere denotes a fixed period of time, common for all dataset, regarding the required processing\nto be made available, while denotes the update frequency (i.e., as provided in the Dublin Core description)\n\nUpdate frequency | Days | λ\n--- | --- | ---\nDaily | 1 | 1\nWeekly | 7  | 1.1\nMonthly | 30 | 1.15\n\n---\n\n[Atz, Ulrich. \"The tau of data: A new metric to assess the timeliness of data in catalogues.\" Conference for E-Democracy and Open Governement. 2014.](https://www.donau-uni.ac.at/imperia/md/content/department/gpa/zeg/bilder/cedem/cedem14/cedem14_proceedings.pdf)\n",
+          "operationId": "dq7",
+          "parameters": [
+            {
+              "description": "The `process_id` Process ID of the dataset submission process.",
+              "in": "path",
+              "minimum": 1,
+              "name": "process_id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Currentness"
+              }
+            },
+            "400": {
+              "description": "Process ID does not exist / is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_400"
+              }
+            },
+            "401": {
+              "description": "Unauthorized. Auth key is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_401"
+              }
+            },
+            "404": {
+              "description": "No asset with the given PID (pid) found.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_404"
+              }
+            },
+            "500": {
+              "description": "An error occurred during registration.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_500"
+              }
+            }
+          },
+          "summary": "Currentness",
+          "tags": [
+            "quality"
+          ],
+          "x-swagger-router-controller": "swagger_server.controllers.quality_controller"
+        }
+      },
+      "/quality/dq8/{process_id}": {
+        "post": {
+          "description": "Via the unique external identifier, a submitted dataset is assessed regarding its actual format and the format\nstated in its metadata.\n\nThis metric compares the actual format of a given dataset and\ncompares it with the format stated in the respective metadata field of the dataset\n\n```Format compliance = (0, format does not match metadata | 1, format matches metadata}```\n",
+          "operationId": "dq8",
+          "parameters": [
+            {
+              "description": "The `process_id` Process ID of the dataset submission process.",
+              "in": "path",
+              "minimum": 1,
+              "name": "process_id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "202": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/FormatCompliance"
+              }
+            },
+            "400": {
+              "description": "Process ID does not exist / is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_400"
+              }
+            },
+            "401": {
+              "description": "Unauthorized. Auth key is missing.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_401"
+              }
+            },
+            "404": {
+              "description": "No asset with the given PID (pid) found.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_404"
+              }
+            },
+            "500": {
+              "description": "An error occurred during registration.",
+              "schema": {
+                "$ref": "#/definitions/inline_response_500"
+              }
+            }
+          },
+          "summary": "Format compliance",
+          "tags": [
+            "quality"
+          ],
+          "x-swagger-router-controller": "swagger_server.controllers.quality_controller"
+        }
+      }
+    },
+    "produces": [
+      "application/json"
+    ],
+    "responses": {
+      "CannotResolve": {
+        "description": "Process ID does not exist / is missing.",
+        "schema": {
+          "$ref": "#/definitions/inline_response_400"
+        }
+      },
+      "InternalError": {
+        "description": "An error occurred during registration.",
+        "schema": {
+          "$ref": "#/definitions/inline_response_500"
+        }
+      },
+      "Missing": {
+        "description": "No asset with the given PID (pid) found.",
+        "schema": {
+          "$ref": "#/definitions/inline_response_404"
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized. Auth key is missing.",
+        "schema": {
+          "$ref": "#/definitions/inline_response_401"
+        }
+      }
+    },
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "security": [
+      {
+        "APIKeyHeader": []
+      }
+    ],
+    "securityDefinitions": {
+      "APIKeyHeader": {
+        "description": "The `auth_key` that was given in response to `/api/login`. Test with key: `474f1e74e6e997618525b09f306c687d581b2cea638af048ac02b7867e61ffb8`\n",
+        "in": "header",
+        "name": "X-auth-key",
+        "type": "apiKey"
+      }
+    },
+    "swagger": "2.0",
+    "tags": [
+      {
+        "description": "DMA Data quality enhancement services",
+        "name": "quality"
+      },
+      {
+        "description": "API metadata",
+        "name": "meta"
+      }
+    ]
+  }
+}

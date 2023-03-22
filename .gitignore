@@ -1,0 +1,4 @@
+/my_mapper/target/
+*.iml
+.DS_Store
+.idea

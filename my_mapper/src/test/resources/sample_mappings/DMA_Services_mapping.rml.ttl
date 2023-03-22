@@ -1,0 +1,148 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix mail: <http://example.com/mail#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix ex: <http://www.dma.at/vocabularies/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix transit: <http://vocab.org/transit/terms/> .
+@prefix wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#>.
+@prefix schema: <http://schema.org/>.
+@prefix gn: <http://www.geonames.org/ontology#>.
+@prefix geosp: <http://www.telegraphis.net/ontology/geography/geography#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix carml: <http://carml.taxonic.com/carml/> .
+
+<rr:FromToMaps>
+    rml:logicalSource [
+        rml:source "../sample_input_files/DMA_Services.json";
+        rml:referenceFormulation ql:JSONPath;
+        rml:iterator "$"
+    ];
+
+    rr:subjectMap [
+	rr:termType rr:IRI;
+        rr:template "DMA_ID_PLACEHOLDER";
+        rr:class ex:DataAsset;
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:title;
+        rr:objectMap
+        [
+          rr:template "{$[\"open api specification\"][\"info\"][\"title\"]}";
+	  rr:termType rr:Literal;
+        ];
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:ContactPoint;
+        rr:objectMap
+        [
+          rr:template "{$[\"open api specification\"][\"info\"][\"x-dma-metadata:contactpoint\"][\"email\"]}";
+	  rr:termType rr:Literal;
+        ];
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:Publisher;
+        rr:objectMap
+        [
+          rr:template "{$[\"open api specification\"][\"info\"][\"x-dma-metadata:publisher\"][\"name\"]}";
+	  rr:termType rr:Literal;
+        ];
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:license;
+        rr:objectMap
+        [
+          rr:template "{$[\"open api specification\"][\"info\"][\"license\"][\"name\"]}";
+	  rr:termType rr:Literal;
+        ];
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:version;
+        rr:objectMap
+        [
+          rr:template "{$[\"open api specification\"][\"info\"][\"version\"]}";
+	  rr:termType rr:Literal;
+        ];
+    ];
+
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:category;
+        rr:objectMap
+        [
+          rr:template "http://vocabularies.dma.at/categories/data_quality";
+	  rr:termType rr:IRI;
+        ];
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:theme;
+        rr:objectMap
+        [
+          rr:template "{$[\"open api specification\"][\"info\"][\"x-dma-metadata:theme\"]}";
+	  rr:termType rr:Literal;
+        ];
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:price_model;
+        rr:objectMap
+        [
+          rr:template "http://vocabularies.dma.at/price_models/price_model_1";
+	  rr:termType rr:IRI;
+        ];
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:documentation;
+        rr:objectMap
+        [
+          rr:template "DMA_DOCUMENTATION_URL_PLACEHOLDER";
+	  rr:termType rr:Literal;
+        ];
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:tags;
+        rr:objectMap
+        [
+         carml:multiReference  "$[\"open api specification\"][\"info\"][\"x-dma-metadata:tags\"]";
+	  rr:termType rr:Literal;
+        ];
+    ];
+
+    rr:predicateObjectMap
+    [
+        rr:predicate ex:created;
+        rr:objectMap
+        [
+          rr:template "2017";
+	  rr:termType rr:Literal;
+        ];
+    ];
+
+     rr:predicateObjectMap
+    [
+        rr:predicate ex:description;
+        rr:objectMap
+        [
+          rr:template "{$[\"open api specification\"][\"info\"][\"description\"]}";
+	  rr:termType rr:Literal;
+        ];
+    ].
