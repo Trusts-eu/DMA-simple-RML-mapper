@@ -1,22 +1,18 @@
-
-
-___
-
-
+# Simple RML Mapper
 
 **Simple web service that wraps CARML, an implementation of the RML spec.**
 
-## An overview of how this service interacts with others can be found here: https://docs.google.com/drawings/d/1xOvSQl3GlpL0fwHpCoH4PNkhW9VtGt3zxkv4-IJAQNI/edit?usp=sharing
+## An overview of how this service interacts with others can be found [here](https://docs.google.com/drawings/d/1xOvSQl3GlpL0fwHpCoH4PNkhW9VtGt3zxkv4-IJAQNI/edit?usp=sharing)
 
-# TO RUN:
-## Using Docker:
+## TO RUN:
+### Using Docker:
 build container and run binding port 8080
 
 `docker build --rm -t dma/metadata_mapper . `
 
 `docker run --name=mappercontainer -v mappingsvol:/mapping_files --user 9265065:9265065 -p 8080:8080 -it dma/metadata_mapper `
 
-## In local machine:
+### In local machine:
 set environment variables (see below), then:
 
 `cd my_mapper`
@@ -24,7 +20,7 @@ set environment variables (see below), then:
 `mvn clean package; java -jar target/my_mapper-jar-with-dependencies.jar`
 
 
-# A quick overview of the API:
+## A quick overview of the API:
 
 
 * http://localhost:8080/RMLMapper/mapper/listMappings  (GET)
@@ -47,7 +43,7 @@ set environment variables (see below), then:
 
     Use this POST method for quick testing. It has x-www-form-urlencoded input that has three fields: RMLFILE INPUTFILE and Format. The values of the first two are URLEncoded files, the last is a string either "json" and "xml"
 
-# Environment variables
+## Environment variables
 
 These two variables are for the operation of the mapper:
 
@@ -100,11 +96,11 @@ Additionally, the following variables must also be set, which describe the Catal
 * `ENV DMA_PLACEHOLDER_CATALOG_IDENTIFIER`
    identifier of the catalog, to be agreed upon when registering to DMA
 
-# Known Issues
+## Known Issues
 
 * https://redmine.datamarket.at/issues/313
 
-# Credits
+## Credits
 This software was originaly developed by Victor Mireles and Tomas Knap from Semantic Web Company, in terms of the [Data Market Austria](https://datamarket.at/) project in 2018. Said project was funded by the Austrian Research Funding Agency (FFG) and the Federal Ministry for Transportations, Innovationd and Technology (BMVIT).
 
 Further testing and reuse was done in terms of project [TRUSTS: Trusted secure data sharing space](https://www.trusts-data.eu/), which received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement [No 871481](https://cordis.europa.eu/project/id/871481).
